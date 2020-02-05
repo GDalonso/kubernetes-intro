@@ -1,0 +1,16 @@
+version: "3.0"
+services:
+  db:
+    image: mysql
+# Variáveis de ambiente que congifuram o acesso ao banco
+    environment:
+      - MYSQL_DATABASE=loja
+      - MYSQL_USER=root
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    volumes:
+      - /home/guilherme/Alura/kubernetes-intro/volumemysql:/var/lib/mysql
+  web:
+    build:
+      dockerfile: web.dockerfile
+    ports: 8080:80
+    depends_on: db

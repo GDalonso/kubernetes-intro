@@ -1,0 +1,11 @@
+# Se eu remover o pod criado assim diretamente, o kubernetes não gerencia, ele não vai reciar o pod, só usando o deployment
+apiVersion: v1 # Versão da api do kubernetes
+kind: Pod #quero criar um objeto pod
+metadata:
+  name: aplicacao #nome do objeto
+spec: #especificação do objeto pod
+  containers: #Lista de containers do pod
+    - name: container-aplicacao #primeiro container
+      image: rafanercessian/aplicacao-loja:v1 #imagem desse container
+      ports:
+        - containerPort: 80 #porta do container que vamos utilizar

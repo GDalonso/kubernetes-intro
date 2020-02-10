@@ -1,0 +1,17 @@
+# Deployments mantém o estado da aplicação, se o pod criado parar o kubenetes vai criar um novo pra assumir
+
+apiVersion: apps/v1beta1 # Versão da api do kubernetes
+kind: Deployment #quero criar um objeto deployment
+metadata:
+  name: aplicacao-deployment # nome do deployment
+spec: #especificação do objeto deployment
+  template: #estado que tem que ser mantido pelo kubernetes
+    metadata:
+      labels:
+       name: aplicacao-pod #nome do objeto pod que ele vai manter estado
+    spec: #especificação do objeto pod
+      containers: #Lista de containers do pod
+        - name: container-aplicacao #primeiro container
+          image: rafanercessian/aplicacao-loja:v1 #imagem desse container
+          ports:
+            - containerPort: 80 #porta do container que vamos utilizar
